@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>About cfDNAPro &mdash; cfDNAPro  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="tutorial/getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home" alt="Documentation Home"> cfDNAPro
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/getting_started.html">Installation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">cfDNAPro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>About cfDNAPro</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="about-cfdnapro">
+<h1>About cfDNAPro<a class="headerlink" href="#about-cfdnapro" title="Permalink to this headline">¶</a></h1>
+<p>Liquid Biopsy Cell-free DNA Fragment Size Profiler</p>
+<p>Currently cfDNAPro is only compatible with insert sizes metrics files exported by picard tools:
+<a class="reference external" href="http://broadinstitute.github.io/picard/command-line-overview.html#CollectInsertSizeMetrics">CollectInsertSizeMetrics</a>.</p>
+<p>More features will be added in coming versions.</p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>cfDNA fragment size metrics are important features for utilizing liquid
+biopsy in tumor early detection, diagnosis, therapy personlization and
+monitoring. Analyzing and visualizing insert size metrics could be time
+intensive.</p>
+<p>This package intends to simplify this exploration process, and it offers
+two sets of functions for data characterization and data visualization.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="n">devtools</span><span class="p">))</span> <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;devtools&quot;</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">devtools</span><span class="p">)</span>
+<span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&quot;hw538/cfDNAPro&quot;</span><span class="p">,</span> <span class="n">build_vignettes</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="a-quick-example">
+<h2>A Quick Example<a class="headerlink" href="#a-quick-example" title="Permalink to this headline">¶</a></h2>
+<p>If your insert metrics size txt files from multiple cohorts were stored
+in their own folders under <em>path/to/main/folder</em>, and you would like to
+visualize the mode size of each sample, the simpliest way is:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">cfDNAPro</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">&lt;-</span> <span class="s">&quot;path/to/main/folder&quot;</span>
+<span class="n">myplot</span> <span class="o">&lt;-</span> <span class="nf">callMode</span><span class="p">(</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">plotMode</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="vignettes">
+<h2>Vignettes<a class="headerlink" href="#vignettes" title="Permalink to this headline">¶</a></h2>
+<p>To see the vignettes in Rstudio (you have to indicate
+<code class="docutils literal notranslate"><span class="pre">build_vignettes</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> during aforementioned installation step), use
+the command:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">browseVignettes</span><span class="p">(</span><span class="s">&quot;cfDNAPro&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Permalink to this headline">¶</a></h2>
+<p>Please cite package ‘cfDNAPro’ in publications:</p>
+<p>Haichao Wang and Christopher G. Smith (2019). cfDNAPro: Liquid Biopsy
+Cell-free DNA Fragment Size Profiler. R package version 0.0.4.
+<a class="reference external" href="https://github.com/hw538/cfDNAPro">https://github.com/hw538/cfDNAPro</a></p>
+<div class="toctree-wrapper compound" id="getting-started">
+</div>
+<div class="toctree-wrapper compound" id="ref">
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorial/getting_started.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Haichao Wang
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
