@@ -66,9 +66,7 @@ Citation
 
 Please cite package ‘cfDNAPro’ in publications:
 
-Haichao Wang and Christopher G. Smith (2019). cfDNAPro: Liquid Biopsy
-Cell-free DNA Fragment Size Profiler. R package version 0.0.4.
-https://github.com/hw538/cfDNAPro
+Haichao Wang, Paulius D. Mennea et al (2020). cfDNAPro:An R/Bioconductor package to extract and visualise cell-free DNA biological features. R package version 1.7 https://github.com/hw538/cfDNAPro
 
 
 .. toctree::
