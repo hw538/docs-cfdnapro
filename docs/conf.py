@@ -18,7 +18,7 @@ sys.path.insert(0, '/usr/local/lib/python3.8/site-packages')
 
 project = 'cfDNAPro'
 copyright = '2020, Haichao Wang'
-author = 'Haichao Wang'
+author = 'Haichao Wang, Paulius D. Mennea'
 
 
 # -- General configuration ---------------------------------------------------
