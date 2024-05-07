@@ -3,6 +3,5 @@ sphinxcontrib-napoleon
 sphinx-argparse
 sphinx_rtd_theme
 docutils==0.12
-recommonmark
 configargparse
 appdirs
