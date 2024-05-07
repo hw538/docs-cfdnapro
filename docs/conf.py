@@ -12,7 +12,7 @@
 #
 import os
 import sys
-sys.path.insert(0, '/usr/local/lib/python3.8/site-packages')
+#sys.path.insert(0, '/usr/local/lib/python3.8/site-packages')
 
 # -- Project information -----------------------------------------------------
 
@@ -26,9 +26,21 @@ author = 'Haichao Wang, Paulius D. Mennea'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
+
 extensions = [
-    'sphinx_rtd_theme'
+    'sphinx.ext.duration',
+    'sphinx.ext.doctest',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
+    'sphinx.ext.intersphinx',
 ]
+
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3/', None),
+    'sphinx': ('https://www.sphinx-doc.org/en/master/', None),
+}
+intersphinx_disabled_domains = ['std']
+
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
