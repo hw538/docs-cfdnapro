@@ -3,6 +3,7 @@
   :align: center
   :alt: cfDNAPro logo
 
+--------------------------------------------------------------------------
 |
 
 Introduction
@@ -68,6 +69,7 @@ sequence-through issues.
 
 .. image:: ../img/length_issue.png
   :width: 500
+  :align: center
   :alt: Bias correction example
 
 Here, we propose that the cfDNA fragment is the
