@@ -86,5 +86,21 @@ cell-free DNA biological features. R package version 1.7 https://github.com/hw53
     :caption: Contents:
 
     cfdnapro
-    tutorials
-    cfdnapro_functions
+
+.. toctree::
+    :maxdepth: 2
+    :numbered:
+    :caption: Tutorials
+    :hidden:
+
+    tutorials/tutorial_1
+    tutorials/tutorial_2
+    tutorials/tutorial_3
+
+.. toctree::
+    :maxdepth: 2
+    :numbered:
+    :caption: Functions
+    :hidden:
+
+    functions/cfdnapro_functions
