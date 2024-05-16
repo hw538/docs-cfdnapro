@@ -1,7 +1,7 @@
 .. _cfdnapro_usage_tutorials:
 
 ********************************************************
-Tutorial: cfDNAPro General Usage
+cfDNAPro General Usage
 ********************************************************
 
 .. contents:: Table of Contents
