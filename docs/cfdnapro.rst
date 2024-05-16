@@ -71,6 +71,8 @@ sequence-through issues.
   :align: center
   :alt: Bias correction example
 
+| 
+
 Here, we propose that the cfDNA fragment is the
 region between the left boundary of the forward strand and the right
 boundary of the reverse strand.
