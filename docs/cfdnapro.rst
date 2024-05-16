@@ -22,8 +22,8 @@ single point mutation information from cfDNA fragment data.
 This functionality enables the integration of multiple features,
 such as fragment size and mutation status, allowing for comprehensive
 analysis and plotting of the data,
-`as demonstrated in our publication in X Journal <X>`__.
-The ``cfDNAPro`` package has been accepted by Bioconductor: `cfDNAPro.html <https://bioconductor.org/packages/release/bioc/html/cfDNAPro.html>`__.
+as demonstrated in our `preprint <X>`__.
+The ``cfDNAPro`` package has been accepted by `Bioconductor <https://bioconductor.org/packages/release/bioc/html/cfDNAPro.html>`__.
 
 Motivation
 **********
@@ -129,11 +129,11 @@ the paired-end reads and the base of the fragment.
 Package Usage Guide
 ********************
 
-The ``cfDNAPro`` offers a range of applications, all of which are detailed in the :ref:`tutorial section <cfdnapro_usage_tutorials>`. Also
-check out the convenient :ref:`summary tool <cfDNAPro_summary_tool>` if you are analyzing multiple samples or
-region-sets.
+The ``cfDNAPro`` offers a range of applications,
+all of which are detailed in the :ref:`tutorial section <cfdnapro_usage_tutorials>`.
 
-More details on the R function parameters can be ound :ref:`here <cfdnapro_functions>`
+
+More details on the R function parameters can be found :ref:`here <cfdnapro_functions>`.
 
 Contact
 *******
