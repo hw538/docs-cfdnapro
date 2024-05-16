@@ -83,7 +83,7 @@ cell-free DNA biological features. R package version 1.7 https://github.com/hw53
 
 .. toctree::
     :maxdepth: 2
-    :caption: Contents:
+    :caption: Contents
 
     cfdnapro
 
