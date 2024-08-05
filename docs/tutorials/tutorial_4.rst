@@ -1,7 +1,5 @@
-.. _cfdnapro_usage_tutorials:
-
 ********************************************************
-cfDNAPro General Usage
+Additional Examples of using the cfDNAPro R Package
 ********************************************************
 
 .. contents:: Table of Contents
@@ -13,11 +11,11 @@ Fragment Size Data
 
 In this tutorial, we will be working with fragment
 size metrics data, which
-is commonly generated in cfDNA research using
+are commonly generated in cfDNA research using
 `Picard <https://samtools.github.io/hts-specs/SAMv1.pdf>`__.
 
 
-    Picard is a set of command line tools for manipulating high-throughput sequencing (HTS) data and formats such as SAM/BAM/CRAM and VCF. These file formats are defined in the Hts-specs repository. See especially the SAM specification and the VCF specification. [1]_
+    Picard is a set of command line tools for manipulating high-throughput sequencing (HTS) data and formats such as SAM/BAM/CRAM and VCF. These file formats are defined in the Hts-specs repository. See the SAM specification and the VCF specification. [1]_
 
 Fragment size, also commonly referred to as cfDNA
 fragment length,
@@ -455,8 +453,8 @@ We can label the peaks and valleys with dots:
 
 |
 
-This is the end of Tutorial 1 detailing
-the general usage of the ``cfDNAPro`` R Package.
+This is the end of the tutorial detailing
+additional examples of how to use the ``cfDNAPro`` R Package.
 
 Check out the following tutorials to become a true 
 Pro at using the cfDNAPro package ``:)``
