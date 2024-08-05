@@ -39,9 +39,9 @@ A Quick Example
 
 .. code:: R
 
-    if (!require(devtools)) install.packages("devtools")
-    library(devtools)
-    devtools::install_github("hw538/cfDNAPro", build_vignettes = TRUE)
+  if (!require(devtools)) install.packages("devtools")
+  library(devtools)
+  devtools::install_github("hw538/cfDNAPro", build_vignettes = TRUE)
 
 To visualise the fragment size mode of each sample,
 ``cfDNAPro`` can read pre-existing insert size metrics
@@ -50,9 +50,9 @@ files from multiple cohort sub-folders stored in
 
 .. code:: R
 
-    library(cfDNAPro)
-    path <- "path/to/main/folder"
-    myplot <- callMode(path = path) %>% plotMode()
+  library(cfDNAPro)
+  path <- "path/to/main/folder"
+  myplot <- callMode(path = path) %>% plotMode()
 
 Currently cfDNAPro is compatible exclusively with insert sizes metrics files
 produced by Picard Tools, using the `CollectInsertSizeMetrics` tool, which can
@@ -69,7 +69,7 @@ the command:
 
 .. code:: R
 
-    browseVignettes("cfDNAPro")
+  browseVignettes("cfDNAPro")
 
 Citation
 **********
@@ -82,25 +82,26 @@ cell-free DNA biological features. R package version 1.7 https://github.com/hw53
 
 
 .. toctree::
-    :maxdepth: 2
-    :caption: Contents
+  :maxdepth: 2
+  :caption: Contents
 
-    cfdnapro
-
-.. toctree::
-    :maxdepth: 2
-    :numbered:
-    :caption: Tutorials
-    :hidden:
-
-    tutorials/tutorial_1
-    tutorials/tutorial_2
-    tutorials/tutorial_3
+  cfdnapro
 
 .. toctree::
-    :maxdepth: 2
-    :numbered:
-    :caption: Functions
-    :hidden:
+  :maxdepth: 2
+  :numbered:
+  :caption: Tutorials
+  :hidden:
 
-    functions/cfdnapro_functions
+  tutorials/tutorial_1
+  tutorials/tutorial_2
+  tutorials/tutorial_3
+  tutorials/tutorial_4
+
+.. toctree::
+  :maxdepth: 2
+  :numbered:
+  :caption: Functions
+  :hidden:
+
+  functions/cfdnapro_functions
