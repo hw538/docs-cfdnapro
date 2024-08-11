@@ -109,6 +109,11 @@ The plot will then display total counts of all SNVs within that gene, including 
   # First, call the cfDNA fragment length object
   legth_obj <- callLength(gr_obj, genome_label = "hg38")
 
+  # Process fragments that overlap loci indicated in the mutation file
+  frag_obj <- readBam(bamfile = "path/to/bamfile.bam",
+                      mutation_file = "/path/to/mutation_file.tsv",
+                      mut_fragments_only = TRUE) 
+
   # Plot normalised MUT and REF fragment lengths
   plotCNV(motif_obj,
           frag_obj_mut =  frag_obj
