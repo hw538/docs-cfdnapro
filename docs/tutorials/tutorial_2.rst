@@ -75,7 +75,7 @@ of cfDNA feature metrics alongside mutational SNV information.
 The mutational data can be
 provided by including an additional ``mutations.tsv`` mutation file
 and specifying it in the ``readBam()`` function using the
-``mutation_file =`` parameter:
+``mutation_file`` parameter:
 
 .. code:: R
 
@@ -117,6 +117,12 @@ An alternative approach would be to generate a mismatch list
 using ``bcftools mpileup`` in ``bash`` and then provide
 it as a .tsv file for the ``readBam()`` function.
 
+The default behavior of the ``readBam()`` function is to process all DNA fragments
+within the BAM file. However, by setting ``mut_fragments_only = TRUE``,
+the function will only analyse fragments that overlap with the specified mutation loci.
+This option reduces the computational load and may be adequate for users who do not
+require information from non-overlapping fragments.
+
 Advantages of the readBam() Function
 =====================================
 
@@ -154,6 +160,28 @@ or only of the reads overlaps the mutationlocus
 (SO - single-read overlap),
 and whether the paired read bases agree
 (CO - concordant read overlap) or disagree (DO - dicordant read overlap).
+
+Below are the different scenarios of running the ``readBam()`` function:
+
+.. code:: R
+
+  # Process all fragments present within the BAM file without mutational annotation
+  readBam(bamfile = "path/to/bamfile.bam")
+
+  # Process all fragments present within the BAM file with additional mutation annotation
+  readBam(bamfile = "path/to/bamfile.bam",
+          mutation_file = "/path/to/mutation_file.tsv")
+  
+  # Process fragments that overlap loci indicated in the mutation file
+  readBam(bamfile = "path/to/bamfile.bam",
+          mutation_file = "/path/to/mutation_file.tsv",
+          mut_fragments_only = TRUE)
+  
+  # Process fragments that overlap loci generated during the pileup
+  readBam(bamfile = "path/to/bamfile.bam",
+          call_mutations = TRUE,
+          mut_fragments_only = TRUE)
+
 
 Mutation Output Files
 ========================================
