@@ -47,7 +47,7 @@ Fragment Length and Fragment Mutations
   frag_obj <- readBam(bamfile = "path/to/bamfile.bam",
           mutation_file = "/path/to/mutation_file.tsv")
 
-  # Call the cfDNA fragment length object
+  # Call cfDNA fragment lengths
   length_obj <- callLength(frag_obj,
                            integrate_mut = TRUE,
                            ref_type = "locus_fragment",
@@ -55,7 +55,7 @@ Fragment Length and Fragment Mutations
 
   # Plot normalised MUT and REF fragment lengths
   plotLength(length_obj,
-             output_file = "/path/to/plot.png",
+             output_file = "/path/to/length_plot.png",
              ggsave_params = list())
 
 The ``ref_type`` parameter enables users to specify
@@ -102,18 +102,23 @@ Fragment Motif and Fragment Mutations
 ================================================
 
 
-The motifs can be plotted similarly to the lengths.
+The motifs can be plotter similarly.
 
 .. code:: R
 
-  # First, call the cfDNA fragment length object
-  motif_obj <- callLength(gr_obj,
-                          integrate_mut = TRUE
-                          mut_plot_type = "normalised")
+  # Process all fragments present within the BAM file with additional mutation annotation
+  frag_obj <- readBam(bamfile = "path/to/bamfile.bam",
+          mutation_file = "/path/to/mutation_file.tsv")
 
-  # Plot normalised MUT and REF fragment lengths
+  # Call cfDNA fragment motifs
+  motif_obj <- callMotif(frag_obj,
+                         integrate_mut = TRUE,
+                         ref_type = "locus_fragment",
+                         downsample_ref = TRUE)
+
+  # Plot normalised MUT and REF fragment motifs
   plotMotif(motif_obj,
-            output_file = "/path/to/plot.png",
+            output_file = "/path/to/motif_plot.png",
             ggsave_params = list())
 
 
