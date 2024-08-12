@@ -18,6 +18,8 @@ the function will only analyse fragments that overlap with the specified mutatio
 This option reduces the computational load and may be adequate for users who do not
 require information from non-overlapping fragments for fragment motif and fragment length analyses.
 
+Below are the various ways to execute the ``readBam()`` function:
+
 .. code:: R
 
   # Process all fragments present within the BAM file without mutational annotation
@@ -45,7 +47,7 @@ Fragment Length and Fragment Mutations
 
   # Process all fragments present within the BAM file with additional mutation annotation
   frag_obj <- readBam(bamfile = "path/to/bamfile.bam",
-          mutation_file = "/path/to/mutation_file.tsv")
+                      mutation_file = "/path/to/mutation_file.tsv")
 
   # Call cfDNA fragment lengths
   length_obj <- callLength(frag_obj,
@@ -108,7 +110,7 @@ The motifs can be plotter similarly.
 
   # Process all fragments present within the BAM file with additional mutation annotation
   frag_obj <- readBam(bamfile = "path/to/bamfile.bam",
-          mutation_file = "/path/to/mutation_file.tsv")
+                      mutation_file = "/path/to/mutation_file.tsv")
 
   # Call cfDNA fragment motifs
   motif_obj <- callMotif(frag_obj,
@@ -157,7 +159,7 @@ additional annotation for the specified genes.
   # Plot normalised MUT and REF fragment lengths
   plotCNV(motif_obj,
           frag_obj_mut =  frag_obj
-          output_file = "/path/to/plot.png",
+          output_file = "/path/to/cnv_plot.png",
           gene_to_highlight = list("ENTREZID" = NULL,
                                    "ENSEMBL" = NULL,
                                    "SYMBOL" = c("BRAF", "PIK3CA")),
