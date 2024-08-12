@@ -8,6 +8,7 @@ Multi-Feature Integration and Visualisation
 
 Each type of cfDNA fragment plot (length, motif, and CNV)
 can also incorporate mutational data.
+
 This integration is feasible if the GRanges object was created through
 the execution of ``readBam(mutation_file = /path/to/file.tsv)`` or
 ``readBam(call_mutations = TRUE)``.
