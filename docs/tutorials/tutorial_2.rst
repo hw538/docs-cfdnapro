@@ -199,11 +199,11 @@ for further inspection based on your analysis.
 .. code:: R
 
     # Process the BAM File
-    gr_obj <- readBam(bamfile = "path/to/bamfile.bam",
-                      mutation_file = "/path/to/mutation_file.tsv")
+    frag_obj <- readBam(bamfile = "path/to/bamfile.bam",
+                        mutation_file = "/path/to/mutation_file.tsv")
 
     # Convert GRanges object to dataframe for further inspection
-    gr_obj <- as.data.frame(gr_obj)
+    frag_obj <- as.data.frame(frag_obj)
 
 Additionally, each mutationally annotated ``GRanges`` object
 can be exported as a mutation-oriented ``.tsv`` file:
@@ -211,11 +211,11 @@ can be exported as a mutation-oriented ``.tsv`` file:
 .. code:: R
 
     # Process BAM File
-    gr_obj <- readBam(bamfile = "path/to/bamfile.bam",
-                      mutation_file = "/path/to/mutation_file.tsv")
+    frag_obj <- readBam(bamfile = "path/to/bamfile.bam",
+                        mutation_file = "/path/to/mutation_file.tsv")
 
     # Export a mutation-oriented .tsv table summarising fragment information per mutation locus
-    writeMutTable(granges_object = gr_obj, output_file = "./table.tsv")
+    writeMutTable(granges_object = frag_obj, output_file = "./table.tsv")
 
 The mutation-oriented table will summarize
 the number of fragments for each candidate mutation,
@@ -232,11 +232,11 @@ then we will use the base that supports the base from the mismatch/mutation list
 .. code:: R
 
     # Process cfDNA and Mutational Data
-    gr_obj <- readBam(bamfile = "path/to/bamfile.bam",
-                     mutation_file = "/path/to/mutation_file.tsv")
+    frag_obj <- readBam(bamfile = "path/to/bamfile.bam",
+                        mutation_file = "/path/to/mutation_file.tsv")
 
     # Generate a Dataframe with Trinucleotide SBS Information
-    trinuc_obj <- callTrinucleotide(gr_obj)
+    trinuc_obj <- callTrinucleotide(frag_obj)
 
     # Plot the Trinucleotide SBS Profile
     plotTrinucleotide(trinuc_obj)
@@ -252,16 +252,16 @@ then we will use the base that supports the base from the mismatch/mutation list
 
 The plot will discriminate between SBS supported by discordant-bases, and single-read/paired-read overlap.
 
-Alernatively, we can plot the trinucleotide profile by excluding the discordant bases.
+Alternatively, we can plot the trinucleotide profile by excluding the discordant bases.
 
 .. code:: R
 
     # Process cfDNA and Mutational Data
-    gr_obj <- readBam(bamfile = "path/to/bamfile.bam",
-                     mutation_file = "/path/to/mutation_file.tsv")
+    frag_obj <- readBam(bamfile = "path/to/bamfile.bam",
+                        mutation_file = "/path/to/mutation_file.tsv")
 
     # Generate a Dataframe with Trinucleotide SBS Information
-    trinuc_obj <- callTrinucleotide(gr_obj)
+    trinuc_obj <- callTrinucleotide(frag_obj)
 
     # Plot Trinucleotide SBS Profile by excluding the dicordant read-pair overlap SBSs
     plotTrinucleotide(trinuc_obj,
