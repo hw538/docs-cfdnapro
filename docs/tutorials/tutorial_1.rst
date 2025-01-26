@@ -48,10 +48,12 @@ sequencing technology.
 
 The function extracts paired-end sequencing information
 applying the following default criteria:
-(a) the reads are flagged as 'proper pair',
-(b) the mapping quality score is at least 30,
-and (c) the CIGAR string excludes any 'I'
-(insertions) or 'D' (deletions).
+(1) Reads mapping qualities less than 30 were discarded;
+(2) Reads must be paired. Of note, by default, cfDNAPro doesn’t impose filtration by “proper pair”; 
+(3) No duplicate; 
+(4) No secondary alignment; 
+(5) No supplementary alignment; 
+(6) No unmapped reads. 
 
 .. code:: R
 
