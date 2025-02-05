@@ -8,7 +8,7 @@ readBam
 
 The ``readBam()`` function reads a BAM file and returns a curated ``GRanges`` object. It processes the BAM file according to various user-defined parameters, such as genome label, strand mode, and sequence names to keep.
 
-### Parameters
+- ``Parameters``:
 
 - **genome_label** (str): Specifies the genome used in the alignment. Accepted values are `"hg19"`, `"hg38"`, or `"hg38-NCBI"`. Default is `"hg19"`. It loads corresponding genome packages for Homo sapiens sequences.
 - **bamfile** (str): The path to the BAM file.
@@ -26,7 +26,7 @@ The ``readBam()`` function reads a BAM file and returns a curated ``GRanges`` ob
 - **mut_fragments_only** (bool): If `TRUE`, only retrieves alignments overlapping mutation loci. Default is `FALSE`.
 - **...**: Additional arguments passed to or from other methods.
 
-### Returns
+- ``Returns``:
 
 A curated ``GRanges`` object containing the genomic alignments.
 
