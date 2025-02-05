@@ -250,6 +250,13 @@ present and by selecting the most prominent read overlap type.
 If the mutation is supported by a discordant overlap fragment,
 then we will use the base that supports the base from the mismatch/mutation list.
 
+The ``output_file`` and ``ggsave_params`` parameters can be used to save the output
+with the desired specifications:
+
+- ``output_file``: String; the name and path of the output PDF file.
+- ``ggsave_params``: A list of parameters to be passed to ``ggplot2::ggsave()``. This list can include any of the arguments that ``ggsave()`` accepts. Default settings of ``ggsave()`` will be used unless specified.  
+  Example: ``list(width = 10, height = 8, dpi = 300)``
+
 .. code:: R
 
     # Process cfDNA and Mutational Data
@@ -260,7 +267,13 @@ then we will use the base that supports the base from the mismatch/mutation list
     trinuc_obj <- callTrinucleotide(frag_obj)
 
     # Plot the Trinucleotide SBS Profile
-    plotTrinucleotide(trinuc_obj)
+    plotTrinucleotide(trinuc_obj,
+                      output_file = "./trinucleotide_profile.pdf",
+                      ggsave_params = list(
+                        width = 17,
+                        height = 6,
+                        units = "cm",
+                        device = "pdf"))
 
 
 .. image:: static/cfDNA_plasma_prefilter.png
@@ -290,13 +303,6 @@ can have a different number of read-pair types covering it. The types are:
 By using the ``plotTrinucleotide()`` function's ``remove_type`` parameter, we can 
 indicate that for each SBS locus, we want to set all discordant read-pair overlaps 
 (``DO``) to 0.
-
-The ``output_file`` and ``ggsave_params`` parameters can be used to save the output
-with the desired specifications:
-
-- ``output_file``: String; the name and path of the output PDF file.
-- ``ggsave_params``: A list of parameters to be passed to ``ggplot2::ggsave()``. This list can include any of the arguments that ``ggsave()`` accepts. Default settings of ``ggsave()`` will be used unless specified.  
-  Example: ``list(width = 10, height = 8, dpi = 300)``
 
 
 .. code:: R
