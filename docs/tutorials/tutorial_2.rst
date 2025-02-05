@@ -146,7 +146,7 @@ The default behavior of the ``readBam()`` function is to process all DNA fragmen
 within the BAM file. However, by setting ``mut_fragments_only = TRUE``,
 the function will only analyse fragments that overlap with the specified mutation loci.
 This option reduces the computational load and may be adequate for users who do not
-require information from non-overlapping fragments.
+require information from non-mutation overlapping fragments/read pairs.
 
 Advantages of the readBam() Function
 =====================================
