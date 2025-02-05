@@ -42,3 +42,29 @@ The ``callTrinucleotide()`` function processes a GRanges object, summarizing cfD
 **Returns**:
 
 A dataframe with summarized mutational and trinucleotide data.
+
+plotTrinucleotide
+-----------------
+
+The ``plotTrinucleotide()`` function processes and plots trinucleotide data. It first applies specified filters and transformations to the data, then generates a visual representation of the results. The function handles data normalization, exclusion, and retention based on provided column names, and it creates detailed plots with options for customization of plot aesthetics.
+
+**Parameters**:
+
+- **trinuc_df** (DataFrame): The dataframe containing trinucleotide data.
+- **exclude_if_type_present** (vector): Mutation locus read-pair overlap types (e.g., CO_MUT, SO_MUT, CO_REF, SO_REF, DO, SO_OTHER, CO_OTHER) whose non-zero presence triggers exclusion of loci. For example, `c("DO")` will exclude any loci that contain even a single discordant read-pair overlap.
+- **retain_if_type_present** (vector): Mutation locus read-pair overlap types that must be present to retain those loci. For example, `c("CO")` will retain loci that contain even a single concordant read-pair overlap.
+- **remove_type** (vector): Mutation locus read-pair overlap types (e.g., SO_MUT, CO_REF, DO) to set to 0 across all loci in the dataframe.
+- **normalize_counts** (bool): If `TRUE`, normalizes SBS counts so they sum to 1. Default is `TRUE`.
+- **show_overlap_type** (bool): If `TRUE`, displays read-pair overlap types. Default is `TRUE`.
+- **ylim** (numeric): Limits for the y-axis in the plot. Default is `c(0, 0.5)`.
+- **plot_title** (str): The title for the plot. Default is `"Trinucleotide Profile"`.
+- **y_axis_title** (str): The title for the y-axis. Default is `"Percentage of Single Base Substitutions"`.
+- **draw_x_axis_labels** (bool): Whether to draw x-axis labels. Default is `TRUE`.
+- **draw_y_axis_labels** (bool): Whether to draw y-axis labels. Default is `TRUE`.
+- **draw_y_axis_title** (bool): Whether to display a title for the y-axis. Default is `TRUE`.
+- **output_file** (str): The path to the output PDF file. Default is `"./trinucleotide_profile.pdf"`.
+- **ggsave_params** (list): A list of parameters to be passed to ``ggplot2::ggsave()``. This list can include any arguments accepted by ``ggsave()``. Example: `list(width = 17, height = 6, units = "cm", device = "pdf")`.
+
+**Returns**:
+
+A trinucleotide SBS plot object and an optional PDF file.
