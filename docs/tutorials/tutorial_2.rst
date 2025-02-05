@@ -128,7 +128,7 @@ The output mismatch list can then be used as input to the ``readBam()`` function
   readBam(bamfile = "path/to/bamfile.bam",
           mutation_file = "path/to/mismatch_file.tsv",
           mut_fragments_only = FALSE,
-          genome_label = "hg38,
+          genome_label = "hg38",
           chromosome_to_keep = paste0("chr", 1:22),
           galp_flag = Rsamtools::scanBamFlag(
             isPaired = TRUE,
