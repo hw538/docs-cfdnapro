@@ -89,29 +89,54 @@ matched tumor tissue sequencing data or can include common cancer mutation hotsp
 It must be formatted in a tab-separated layout containing four columns: 
 ``chr pos ref alt`` in a tab-separated format.
 
-Alternatively,
-mismatches can be identified dynamically rather than relying on a predefined mutation list. 
-We utilize the ``Rsamtools::pileup()`` function to generate a list of mismatches.
-These are then processed in the same manner as entries from the mutation file:
+Alternatively, mismatches can be identified using the wrapper function ``pileupMismatches()``,
+which utilizes the ``Rsamtools::pileup()`` function to generate a list of mismatches.
+The ``pileup_params`` allows you to set the values that are forwarded to the
+``PileupParam()`` function in Rsamtools.
+
+This method is not optimal for identifying tumour-derived mutations and may result
+in many false positives. Additionally, it can be inefficient in terms of computational
+processing and resources, as this module has not been extensively tested.
+Currently, it identifies the total number of cores available on your local machine
+and utilizes all but one of those cores to process the reads from specified chromosomes in parallel.
+We plan to introduce wrapper scripts for high-performance computing (HPC) systems in the near future.
+
+The output from ``pileupMismatches()`` can be saved in a .tsv file using the ``pileupMismatches()``
+parameter ``outfile`` to indicate the path and the filename for the mismatch output.
+
+The output mismatch list can then be used as input to the ``readBam()`` function parameter ``mutation_file``.
+
 
 .. code:: R
 
+  # Generate mismatch list
+  pileupMismatches(bamfile = "path/to/bamfile.bam",
+                   pileup_params = list(max_depth = 250,
+                                        min_base_quality = 13),
+                   genome = BSgenome.Hsapiens.UCSC.hg38::BSgenome.Hsapiens.UCSC.hg38,
+                   chromosome_to_keep = paste0("chr", 1:22),
+                   galp_flag = Rsamtools::scanBamFlag(
+                      isPaired = TRUE,
+                      isDuplicate = FALSE,
+                      isSecondaryAlignment = FALSE,
+                      isUnmappedQuery = FALSE,
+                      isSupplementaryAlignment = FALSE),
+                   num_cores = 3,
+                   outfile = "path/to/mismatch_file.tsv")                
+
   # Process cfDNA data with mutational data from Rsamtools pileup generated list
   readBam(bamfile = "path/to/bamfile.bam",
-          call_mutations = TRUE,
-          pileup_params = list(max_depth = 250,
-                               min_base_quality = 13))
+          mutation_file = "path/to/mismatch_file.tsv",
+          mut_fragments_only = FALSE,
+          genome_label = "hg38,
+          chromosome_to_keep = paste0("chr", 1:22),
+          galp_flag = Rsamtools::scanBamFlag(
+            isPaired = TRUE,
+            isDuplicate = FALSE,
+            isSecondaryAlignment = FALSE,
+            isUnmappedQuery = FALSE,
+            isSupplementaryAlignment = FALSE))
 
-``pileup_params`` allows you to set the values that
-are forwarded to the ``PileupParam()`` function in Rsamtools.
-This method is not optimal for identifying tumour-derived mutations
-and may result in many false positives.
-Additionally, it can be inefficient in terms of computational processing and
-resources, as this module has not been extensively tested.
-Currently, it identifies the total number of cores available on your local machine
-and utilizes all but one of those cores to
-process the reads from specified chromosomes in parallel.
-We plan to introduce wrapper scripts for high-performance computing (HPC) systems in the near future.
 
 An alternative approach would be to generate a mismatch list
 using ``bcftools mpileup`` in ``bash`` and then provide
@@ -156,7 +181,7 @@ annotates each fragment with whether it overlaps a mutation
 locus and whether it has the ``REF`` or ``ALT`` base,
 but also includes paired-end overlap information.
 This indicates whether both reads overlap the mutation locus
-or only of the reads overlaps the mutationlocus
+or only of the reads overlaps the mutation locus
 (SO - single-read overlap),
 and whether the paired read bases agree
 (CO - concordant read overlap) or disagree (DO - dicordant read overlap).
