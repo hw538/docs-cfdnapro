@@ -30,4 +30,15 @@ The ``readBam()`` function reads a BAM file and returns a curated ``GRanges`` ob
 
 A curated ``GRanges`` object containing the genomic alignments.
 
----
+callTrinucleotide
+-----------------
+
+The ``callTrinucleotide()`` function processes a GRanges object, summarizing cfDNA fragment information for each target mutation locus. It annotates each mutation locus with the number and type of supporting fragments according to their read-pair overlap status. The median fragment length is also annotated for each read-pair overlap type. Additionally, the function calculates the locus-based consensus mutation by selecting the most frequent mismatch type, with priority given to concordant read-pair mutations (CO_MUT), followed by single-read mutations (SO_MUT). The consensus mutations are used to derive the trinucleotide substitution types (SBS96).
+
+**Parameters**:
+
+- **frag_obj_mut** (GRanges): A ``GRanges`` object containing fragment and mutation data.
+
+**Returns**:
+
+A dataframe with summarized mutational and trinucleotide data.
