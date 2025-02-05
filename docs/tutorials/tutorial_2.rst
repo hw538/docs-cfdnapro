@@ -174,37 +174,34 @@ The scenarios of overlap are illustrated below:
 Sequencing errors occurring during the nucleotide
 addition stage in the sequencing flowcell can be suppressed
 by selecting mismatches/mutations that are
-overlapped by both paired-end reads.
+supported by both paired-end reads.
 
 Therefore, the ``readBam()`` function not only
-annotates each fragment with whether it overlaps a mutation
-locus and whether it has the ``REF`` or ``ALT`` base,
-but also includes paired-end overlap information.
-This indicates whether both reads overlap the mutation locus
-or only of the reads overlaps the mutation locus
-(SO - single-read overlap),
-and whether the paired read bases agree
-(CO - concordant read overlap) or disagree (DO - dicordant read overlap).
+annotates each fragment/read-pair with information on
+whether it covers a mutation locus and whether it has
+the ``REF`` or ``MUT`` base, but also includes paired-end
+read overlap information.
+This indicates whether only one of the paired-end reads covers the mutation 
+locus (SO - single-read overlap), or both reads overlap the mutation locus 
+with concordant mutation locus bases (CO - concordant read overlap) or 
+discordant bases (DO - discordant read overlap).
 
-Below are the different scenarios of running the ``readBam()`` function:
+Below are the different scenarios for running the ``readBam()`` function:
 
 .. code:: R
 
   # Process all fragments present within the BAM file without mutational annotation
-  readBam(bamfile = "path/to/bamfile.bam")
+  readBam(bamfile = "path/to/bamfile.bam",
+          mutation_file = NULL)
 
   # Process all fragments present within the BAM file with additional mutation annotation
   readBam(bamfile = "path/to/bamfile.bam",
-          mutation_file = "/path/to/mutation_file.tsv")
+          mutation_file = "/path/to/mutation_file.tsv",
+          mut_fragments_only = FALSE)
   
   # Process fragments that overlap loci indicated in the mutation file
   readBam(bamfile = "path/to/bamfile.bam",
           mutation_file = "/path/to/mutation_file.tsv",
-          mut_fragments_only = TRUE)
-  
-  # Process fragments that overlap loci generated during the pileup
-  readBam(bamfile = "path/to/bamfile.bam",
-          call_mutations = TRUE,
           mut_fragments_only = TRUE)
 
 
@@ -214,10 +211,9 @@ The mismatch/mutational information will
 be encoded within the ``GRanges`` object
 along with other columns indicating
 fragment ID, fragment length,
-read pair orientation, status
-of whether it overlaps a target mutation locus,
+mutation status of whether it overlaps a target mutation locus,
 the paired-end read overlap type, and the base type.
-The ``GRanges`` object can then be converted to and R dataframe
+The ``GRanges`` object can then be converted to a dataframe
 for further inspection based on your analysis. 
 
 
@@ -277,7 +273,31 @@ then we will use the base that supports the base from the mismatch/mutation list
 
 The plot will discriminate between SBS supported by discordant-bases, and single-read/paired-read overlap.
 
-Alternatively, we can plot the trinucleotide profile by excluding the discordant bases.
+Alternatively, we can plot the trinucleotide profile by excluding the read-pairs 
+with discordant bases. A mutation locus, such as chr22:50592320-50592320:A-G, 
+can have a different number of read-pair types covering it. The types are:
+
+- ``CO_MUT``: Concordant read-pair overlap with mutation base
+- ``SO_MUT``: Single read overlap with mutation base
+- ``CO_REF``: Concordant read-pair overlap with reference base
+- ``SO_REF``: Single read overlap with reference base
+- ``DO``: Discordant read-pair bases at mutation locus
+- ``SO_OTHER``: Single read overlapping a base that is neither the REF nor MUT 
+  base at the indicated mutation locus
+- ``CO_OTHER``: Concordant read-pair overlap at mutation locus but supporting 
+  a base that is neither REF nor MUT
+
+By using the ``plotTrinucleotide()`` function's ``remove_type`` parameter, we can 
+indicate that for each SBS locus, we want to set all discordant read-pair overlaps 
+(``DO``) to 0.
+
+The ``output_file`` and ``ggsave_params`` parameters can be used to save the output
+with the desired specifications:
+
+- ``output_file``: String; the name and path of the output PDF file.
+- ``ggsave_params``: A list of parameters to be passed to ``ggplot2::ggsave()``. This list can include any of the arguments that ``ggsave()`` accepts. Default settings of ``ggsave()`` will be used unless specified.  
+  Example: ``list(width = 10, height = 8, dpi = 300)``
+
 
 .. code:: R
 
@@ -288,9 +308,16 @@ Alternatively, we can plot the trinucleotide profile by excluding the discordant
     # Generate a Dataframe with Trinucleotide SBS Information
     trinuc_obj <- callTrinucleotide(frag_obj)
 
-    # Plot Trinucleotide SBS Profile by excluding the dicordant read-pair overlap SBSs
+    # Plot Trinucleotide SBS Profile by removing the discordant read-pair overlaps
     plotTrinucleotide(trinuc_obj,
-                      remove_type = c("DO"))
+                      remove_type = c("DO"),
+                      output_file = "./trinucleotide_profile.pdf",
+                      ggsave_params = list(
+                        width = 17,
+                        height = 6,
+                        units = "cm",
+                        device = "pdf"))
+
 
 .. image:: static/cfDNA_plasma_postfilter.png
   :width: 800
@@ -299,3 +326,20 @@ Alternatively, we can plot the trinucleotide profile by excluding the discordant
   :alt: trinuc_postfilter_tut3
 
 |
+
+If we want to remove every locus that had even one discordant 
+read-pair supporting that mutation, we can use the
+``exclude_if_type_present = c("DO")`` parameter.
+Conversely, if we want to retain every SBS that had even one concordant 
+read-pair overlap supporting it, we can use the
+``retain_if_type_present = c("CO")`` parameter.
+
+.. code:: R
+
+    # Plot Trinucleotide SBS Profile by excluding loci with discordant read-pair overlaps
+    plotTrinucleotide(trinuc_obj,
+                      exclude_if_type_present = c("DO"))
+
+    # Plot Trinucleotide SBS Profile by retaining loci with concordant read-pair overlaps
+    plotTrinucleotide(trinuc_obj,
+                      retain_if_type_present = c("CO"))
