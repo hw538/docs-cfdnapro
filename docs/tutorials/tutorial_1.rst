@@ -53,12 +53,22 @@ applying the following default criteria:
 (3) No duplicate; 
 (4) No secondary alignment; 
 (5) No supplementary alignment; 
-(6) No unmapped reads. 
+(6) No unmapped reads.
+
 
 .. code:: R
 
     bamfile <- "/path/to/bam_folder/test.bam"
     frag <- readBam(bamfile = bamfile)
+
+
+The ``readBam()`` function includes a parameter called ``genome_label``, which specifies the genome used in the alignment. The available options are:
+
+- ``"hg19"``: Loads the ``BSgenome.Hsapiens.UCSC.hg19`` package (based on GRCh37.p13).
+- ``"hg38"``: Loads the ``BSgenome.Hsapiens.UCSC.hg38`` package (based on GRCh38.p13).
+- ``"hg38-NCBI"``: Loads the ``BSgenome.Hsapiens.NCBI.GRCh38`` package (based on GRCh38, 2013-12-17).
+
+The ``chromosome_to_keep`` parameter allows you to subset the chromosomes for analysis. This enables you to include only the chromosomes of interest, while excluding unwanted contigs, decoy sequences, or other extraneous data.
 
 
 Plot Fragment Size/Length
