@@ -4,7 +4,7 @@ cfDNAPro Functions and Parameters
 =================================
 
 readBam
-========
+--------
 
 The ``readBam()`` function reads a BAM file and returns a curated ``GRanges`` object. It processes the BAM file according to various user-defined parameters, such as genome label, strand mode, and sequence names to keep.
 
